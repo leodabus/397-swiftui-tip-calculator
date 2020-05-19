@@ -23,7 +23,7 @@ struct ContentView : View {
     
     private let tipPercentages = [0.15, 0.2, 0.25]
     
-    private var percentageFormatter: NumberFormatter = {
+    private let percentageFormatter: NumberFormatter = {
         let f = NumberFormatter()
         f.numberStyle = .percent
         return f
@@ -36,7 +36,7 @@ struct ContentView : View {
     }
     
     private var formattedTipAmount: String {
-        currencyFormatter.string(from: NSNumber(value: tipAmount)) ?? "--"
+        currencyFormatter.string(for: tipAmount) ?? "--"
     }
     
     private var finalTotal: Double {
@@ -44,7 +44,7 @@ struct ContentView : View {
     }
     
     private var formattedFinalTotal: String {
-        currencyFormatter.string(from: NSNumber(value: finalTotal)) ?? "--"
+        currencyFormatter.string(from: finalTotal) ?? "--"
     }
     
     var body: some View {
@@ -55,8 +55,8 @@ struct ContentView : View {
                 TextField("Total", value: $totalInput, formatter: currencyFormatter)
                     .font(.largeTitle)
                     .padding()
-                    .background(Color.white)
-                    .foregroundColor(Color.black)
+                    .background(.white)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                 
                 segmentedTipPercentages
@@ -97,7 +97,7 @@ struct ContentView : View {
     }
     
     private func formatPercent(_ p: Double) -> String {
-        percentageFormatter.string(from: NSNumber(value: p)) ?? "-"
+        percentageFormatter.string(for: p) ?? "-"
     }
 }
 
